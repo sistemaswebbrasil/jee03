@@ -1,19 +1,51 @@
-<server description="PrimeFaces Showcase">
-    <featureManager>
-        <feature>mpConfig-1.3</feature>
-        <feature>mpHealth-2.1</feature>
-        <feature>mpMetrics-2.2</feature>
-        <feature>webProfile-8.0</feature>
-    </featureManager>
+<!-- tag::serverxml[] -->
+<server description="Sample Liberty server">
 
-    <applicationManager autoExpand="true"/>
+  <featureManager>
+    <feature>appSecurity-5.0</feature>
+    <feature>faces-4.0</feature>
+    <feature>servlet-6.0</feature>
+  </featureManager>
 
-    <variable name="default.http.port" defaultValue="8080"/>
-    <variable name="default.https.port" defaultValue="8443"/>
-    <variable name="app.context.root" defaultValue="showcase"/>
+  <variable name="default.http.port" defaultValue="9080"/>
+  <variable name="default.https.port" defaultValue="9443"/>
 
-    <!-- tag::httpEndpoint[] -->
-    <httpEndpoint httpPort="${default.http.port}" httpsPort="${default.https.port}" id="defaultHttpEndpoint"  host="*" />
-    <!-- end::httpEndpoint[] -->
-    <webApplication id="PrimeFacesShowcase" location="liberty-faces.war" contextRoot="${app.context.root}" />
+  <httpEndpoint id="defaultHttpEndpoint"
+    httpPort="${default.http.port}"
+    httpsPort="${default.https.port}" />
+
+  <!-- tag::location[] -->
+  <include location="userRegistry.xml"/>
+  <!-- end::location[]-->
+
+  <application location="guide-security-intro.war" type="war"
+               id="guide-security-intro.war"
+               name="guide-security-intro.war" context-root="/">
+    <!-- tag::application-bnd[] -->
+    <application-bnd>
+      <!-- tag::Security[] -->
+      <!-- tag::security-role-admin[] -->
+      <security-role name="admin">
+      <!-- end::security-role-admin[] -->
+        <!-- tag::Group[] -->
+        <!-- tag::group-name-Manager[] -->
+        <group name="Manager" />
+        <!-- end::group-name-Manager[] -->
+        <!-- tag::group-name-TeamLead[] -->
+        <group name="TeamLead" />
+        <!-- end::group-name-TeamLead[] -->
+        <!-- end::Group[] -->
+      </security-role>
+      <!-- tag::security-role-user[] -->
+      <security-role name="user">
+      <!-- end::security-role-user[] -->
+        <!-- tag::group-name-Employee[] -->
+        <group name="Employee" />
+        <!-- end::group-name-Employee[] -->
+      </security-role>
+      <!-- end::Security[] -->
+    </application-bnd>
+     <!-- end::application-bnd[] -->
+  </application>
 </server>
+<!-- end::serverxml[] -->
