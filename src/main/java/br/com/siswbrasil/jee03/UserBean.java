@@ -10,7 +10,7 @@
  *******************************************************************************/
 // end::copyright[]
 // tag::userbean[]
-package io.openliberty.guides.ui;
+package br.com.siswbrasil.jee03;
 
 import java.io.Serializable;
 

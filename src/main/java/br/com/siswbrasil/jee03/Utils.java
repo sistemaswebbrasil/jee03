@@ -9,7 +9,7 @@
  * SPDX-License-Identifier: EPL-2.0
  *******************************************************************************/
 // end::copyright[]
-package io.openliberty.guides.ui;
+package br.com.siswbrasil.jee03;
 
 public class Utils {
     public static final String ADMIN = "admin";
