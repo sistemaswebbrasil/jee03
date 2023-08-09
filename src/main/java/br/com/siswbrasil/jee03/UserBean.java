@@ -21,7 +21,6 @@ import jakarta.security.enterprise.SecurityContext;
 
 @Named("userBean")
 @RequestScoped
-
 public class UserBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
